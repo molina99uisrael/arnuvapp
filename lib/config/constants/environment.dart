@@ -19,7 +19,8 @@ class Environment {
 
   // static String apiUrl = dotenv.env['API_URL'] ?? 'No está configurado el API_URL';
   // static String apiUrl = 'http://localhost:8080';
-  static String apiUrl = 'http://192.168.100.31:8080';
+  //static String apiUrl = 'http://192.168.100.31:8080';
+  static String apiUrl = 'https://vinculacion-production.up.railway.app';
 
 }
 
