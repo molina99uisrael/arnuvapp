@@ -16,12 +16,11 @@ class LoginScreen extends StatelessWidget {
         body: InicioBackground(
           child: SingleChildScrollView(
             physics: const ClampingScrollPhysics(),
-            child: Column(
+            child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const SizedBox( height: 200 ),
-                
+                const SizedBox( height: 600 ),
                 CardContainer(
                   height: 270,
                   width: (size.width > 600) ? size.width * 0.5 : size.width,
