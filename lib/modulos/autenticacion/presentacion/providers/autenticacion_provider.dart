@@ -31,7 +31,7 @@ class AuthNotifier extends ArnuvNotifier<AuthState>  {
   }
 
   void checkLogin() async {
-    final token = await keyValueStorageService.getValue<String>('token');
+    final token = await keyValueStorageService.getValue<String>('Authorization');
     if( token == null ) return logout();
 
     try {
@@ -63,7 +63,7 @@ class AuthNotifier extends ArnuvNotifier<AuthState>  {
 
   Future<void> loginUser( String email, String password, dynamic context ) async {
     super.showLoading(context);
-    await keyValueStorageService.removeKey('token');
+    await keyValueStorageService.removeKey('Authorization');
     await Future.delayed(const Duration(seconds: 1));
 
     try {
@@ -99,7 +99,7 @@ class AuthNotifier extends ArnuvNotifier<AuthState>  {
 
   Future<void> logout([ String? errorMessage ]) async {
     
-    await keyValueStorageService.removeKey('token');
+    await keyValueStorageService.removeKey('Authorization');
 
     state = state.copyWith(
       authStatus: AuthStatus.notAuthenticated,

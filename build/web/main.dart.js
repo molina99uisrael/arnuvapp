@@ -49978,7 +49978,7 @@ A.l_.prototype={
 vK(){var s=0,r=A.B(t.z),q,p=2,o,n=this,m,l,k,j,i,h,g,f
 var $async$vK=A.C(function(a,b){if(a===1){o=b
 s=p}while(true)switch(s){case 0:s=3
-return A.G(n.at.qj("token",t.N),$async$vK)
+return A.G(n.at.qj("Authorization",t.N),$async$vK)
 case 3:if(b==null){q=n.Zh()
 s=1
 break}p=5
@@ -50012,7 +50012,7 @@ ate(a,b,c){var s=0,r=A.B(t.H),q=1,p,o=this,n,m,l,k,j,i,h,g
 var $async$pR=A.C(function(d,e){if(d===1){p=e
 s=q}while(true)switch(s){case 0:o.Np(c)
 s=2
-return A.G(o.at.q4("token"),$async$pR)
+return A.G(o.at.q4("Authorization"),$async$pR)
 case 2:s=3
 return A.G(A.rL(B.cx,null,t.z),$async$pR)
 case 3:q=5
@@ -50052,7 +50052,7 @@ Zh(){return this.l5(null)},
 atf(a){var s=0,r=A.B(t.H),q=this
 var $async$l5=A.C(function(b,c){if(b===1)return A.y(c,r)
 while(true)switch(s){case 0:s=2
-return A.G(q.at.q4("token"),$async$l5)
+return A.G(q.at.q4("Authorization"),$async$l5)
 case 2:q.saB(0,q.f.aoa(B.eP,null))
 q.Eg(a)
 return A.z(null,r)}})
@@ -53815,7 +53815,7 @@ n===$&&A.b()
 A.oI("REQUEST["+n+"] => PATH: "+a.cx)
 n=t.N
 s=2
-return A.G(q.a.qj("token",n),$async$mY)
+return A.G(q.a.qj("Authorization",n),$async$mY)
 case 2:p=d
 if(p!=null){o=a.b
 o===$&&A.b()
@@ -53827,12 +53827,12 @@ au9(a,b){var s=0,r=A.B(t.z),q=this,p
 var $async$pX=A.C(function(c,d){if(c===1)return A.y(d,r)
 while(true)switch(s){case 0:A.oI("RESPONSE["+A.i(a.c)+"] => PATH: "+a.b.cx)
 p=a.e
-s=p.b.h(0,B.c.f8("token"))!=null?2:3
+s=p.b.h(0,B.c.f8("Authorization"))!=null?2:3
 break
-case 2:p=p.awo(0,"token")
+case 2:p=p.awo(0,"Authorization")
 p.toString
 s=4
-return A.G(q.a.qo("token",p,t.N),$async$pX)
+return A.G(q.a.qo("Authorization",p,t.N),$async$pX)
 case 4:case 3:q.a3c(a,b)
 return A.z(null,r)}})
 return A.A($async$pX,r)},
@@ -53847,7 +53847,7 @@ else p=!0
 s=p?2:3
 break
 case 2:s=4
-return A.G(q.a.q4("token"),$async$pW)
+return A.G(q.a.q4("Authorization"),$async$pW)
 case 4:case 3:q.a3a(0,b,c)
 return A.z(null,r)}})
 return A.A($async$pW,r)}}
