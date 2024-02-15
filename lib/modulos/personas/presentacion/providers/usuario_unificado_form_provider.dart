@@ -111,7 +111,7 @@ class UsuarioUnificadoFormState extends ArnuvState {
   @override
   ArnuvState copyWithArnuv({String? errorMessage, String? succesMessage}) => UsuarioUnificadoFormState(
     formKey: formKey,
-    registro: usuarioUnificadoDefault.clone(),
+    registro: registro,
     esValidoForm: esValidoForm,
     errorMessage: errorMessage ?? super.errorMessage,
     succesMessage: succesMessage ?? super.succesMessage

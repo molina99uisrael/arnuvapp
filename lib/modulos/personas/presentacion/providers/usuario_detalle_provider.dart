@@ -145,7 +145,7 @@ class UsuarioDetalleState extends ArnuvState {
   @override
   ArnuvState copyWithArnuv({String? errorMessage, String? succesMessage}) => UsuarioDetalleState(
     formKey: formKey,
-    registro: usuarioDetalleDefault.clone(),
+    registro: registro,
     esValidoForm: esValidoForm,
     lregistros: lregistros,
     errorMessage: errorMessage ?? super.errorMessage,

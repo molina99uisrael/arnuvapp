@@ -101,7 +101,7 @@ class _Formulario extends ConsumerWidget {
                 maxLength: 10,
                 onChange: (value) => state.registro.id = int.tryParse(value) ?? 0,
                 validacion: (valor) => valiacion.validarSoloNumeros(valor),
-                readOnly: esActualizar,
+                readOnly: true,
               ),
               InputTexto(
                 initialValue: state.registro.nombre,

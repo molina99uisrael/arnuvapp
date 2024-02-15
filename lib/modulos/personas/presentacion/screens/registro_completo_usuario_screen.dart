@@ -23,18 +23,20 @@ class RegistroUnificadoUsuarioScreen extends ConsumerWidget {
         mostrarExitoSnackbar( context, next.succesMessage, ref, 10);
       }
     });
+    final size = MediaQuery.of(context).size;
 
     return Scaffold(
       appBar: AppBar(title: Text(localizations.translate('AppTitRegistroUsuario')) ),
-        body: const SingleChildScrollView(
-          physics: ClampingScrollPhysics(),
+        body: SingleChildScrollView(
+          physics: const ClampingScrollPhysics(),
           child: Column(
             children: [
-              SizedBox( height: 30 ),
+              const SizedBox( height: 30 ),
               
               CardContainer(
                 height: 870,
-                child: _Formulario(onPressedOk: null)
+                width: (size.width > 600) ? size.width * 0.5 : size.width,
+                child: const _Formulario(onPressedOk: null)
               )
             ]
         )
@@ -67,6 +69,8 @@ class _Formulario extends ConsumerWidget {
     if (stateCatalogoDetalle.idcatalogo == 0) {
       metodosCatalogoDetalle.listarCatalogDetalle(1);
     }
+
+    final size = MediaQuery.of(context).size;
     
     final validacion = ValidacionesInputUtil(localizations: localizations);
     return Column(
@@ -96,7 +100,7 @@ class _Formulario extends ConsumerWidget {
               ),
               DropdownPersonalizado(
                 label: localizations.translate('lblTipoIdentificacion'),
-                porcentajeWidth: 0.6,
+                porcentajeWidth: (size.width > 600) ? 0.3 : 0.5,
                 transaparente: true,
                 value: stateCatalogoDetalle.registroSelect.id.iddetalle.toString(), 
                 onchange: metodosCatalogoDetalle.onSeleccionChange,
@@ -153,7 +157,7 @@ class _Formulario extends ConsumerWidget {
               DropdownPersonalizado(
                 label: localizations.translate('lblSelRol'),
                 value: stateRol.registroSelect.id.toString(),
-                porcentajeWidth: 0.6, 
+                porcentajeWidth: (size.width > 600) ? 0.3 : 0.5,
                 onchange: ref.watch(rolDropdownProvider.notifier).onSeleccionChange,
                 items: stateRol.lregistros.map<DropdownMenuItem<String>>((Rol value) {
                   return DropdownMenuItem<String>(

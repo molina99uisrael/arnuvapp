@@ -7,6 +7,7 @@ class CardContainer extends StatelessWidget {
   final double ? paddingHorizontal; 
   final double ? paddingVertical; 
   final double ? height; 
+  final double ? width; 
   final Function? onTap;
 
   const CardContainer({
@@ -15,7 +16,8 @@ class CardContainer extends StatelessWidget {
     this.paddingHorizontal,
     this.paddingVertical,
     this.onTap,
-    this.height
+    this.height,
+    this.width
   }) : super(key: key);
 
   @override
@@ -26,7 +28,7 @@ class CardContainer extends StatelessWidget {
         onTap: onTap as void Function()?,
         child: Container(
           height: height ?? double.infinity,
-          width: double.infinity,
+          width: width ?? double.infinity,
           padding: const EdgeInsets.all( 20 ),
           decoration: _createCardShape(),
           child: child,

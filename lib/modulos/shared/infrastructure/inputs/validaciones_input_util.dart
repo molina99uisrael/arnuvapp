@@ -1,5 +1,6 @@
 
 import 'package:arnuvapp/modulos/shared/shared.dart';
+import 'package:formz/formz.dart';
 
 class ValidacionesInputUtil {
 
@@ -10,19 +11,20 @@ class ValidacionesInputUtil {
   });
 
   validarEmail ( value ) {
-    // if (value.length < 3) return;
-    String pattern = r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
-    RegExp regExp  = RegExp(pattern);
-    
-    return regExp.hasMatch(value ?? '') 
+    var email = Email.dirty(value);
+    return Formz.validate([ email ]) 
     ? null 
-    : localizations.translate('validarEmail');
+    : email.errorMessage;
+    // : localizations.translate('validarEmail');
   }
 
   validarContrasenia( value ) {
-    return ( value != null && value.length >= 6 ) 
+    var password = Password.dirty(value);
+    
+    return Formz.validate([ password ])
     ? null 
-    : localizations.translate('validarPassword');
+    : password.errorMessage;
+    // : localizations.translate('validarPassword');
   }
 
   validarSoloLetras( value ) {

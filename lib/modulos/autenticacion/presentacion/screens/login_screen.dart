@@ -9,20 +9,23 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
+    final size = MediaQuery.of(context).size;
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-      child: const Scaffold(
+      child: Scaffold(
         body: InicioBackground(
           child: SingleChildScrollView(
-            physics: ClampingScrollPhysics(),
+            physics: const ClampingScrollPhysics(),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SizedBox( height: 200 ),
+                const SizedBox( height: 200 ),
                 
                 CardContainer(
                   height: 270,
-                  child: _LoginForm(),
+                  width: (size.width > 600) ? size.width * 0.5 : size.width,
+                  child: const _LoginForm(),
                 )  
               ],
             ),
