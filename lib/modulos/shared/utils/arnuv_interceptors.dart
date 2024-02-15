@@ -6,7 +6,7 @@ class ArnuvInterceptors extends Interceptor {
 
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) async {
-    print('REQUEST[${options.method}] => PATH: ${options.path}');
+    // print('REQUEST[${options.method}] => PATH: ${options.path}');
     final token = await keyValueStorageService.getValue<String>('Authorization');
     if (token != null) {
       options.headers.addAll({'Authorization': 'Bearer $token'});
@@ -17,10 +17,11 @@ class ArnuvInterceptors extends Interceptor {
 
   @override
   void onResponse(Response response, ResponseInterceptorHandler handler) async {
-    print('RESPONSE[${response.statusCode}] => PATH: ${response.requestOptions.path}');
+    // print('RESPONSE[${response.statusCode}] => PATH: ${response.requestOptions.path} ');
 
     if(response.headers['Authorization'] != null) {
       String token = response.headers.value('Authorization')!;
+      // print('TOKEN[${token}] ');
       await keyValueStorageService.setKeyValue<String>('Authorization', token);
     }
     super.onResponse(response, handler);
@@ -28,7 +29,7 @@ class ArnuvInterceptors extends Interceptor {
 
   @override
   Future onError(DioException err, ErrorInterceptorHandler handler) async {
-    print('ERROR[${err.response?.statusCode}] => PATH: ${err.requestOptions.path}');
+    // print('ERROR[${err.response?.statusCode}] => PATH: ${err.requestOptions.path}');
     if( err.response?.statusCode == 401 || err.response?.statusCode == 403){
       await keyValueStorageService.removeKey('Authorization');
     }

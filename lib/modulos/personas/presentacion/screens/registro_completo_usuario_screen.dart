@@ -29,10 +29,11 @@ class RegistroUnificadoUsuarioScreen extends ConsumerWidget {
       appBar: AppBar(title: Text(localizations.translate('AppTitRegistroUsuario')) ),
         body: SingleChildScrollView(
           physics: const ClampingScrollPhysics(),
-          child: Column(
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const SizedBox( height: 30 ),
-              
+              const SizedBox( height: 100 ),
               CardContainer(
                 height: 870,
                 width: (size.width > 600) ? size.width * 0.5 : size.width,

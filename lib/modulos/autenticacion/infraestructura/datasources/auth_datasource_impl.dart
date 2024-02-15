@@ -4,6 +4,8 @@ import 'package:arnuvapp/modulos/shared/shared.dart';
 
 class AuthDataSourceImpl extends AuthDataSource with ArnuvServicios {
 
+  final keyValueStorageService = KeyValueStorageServiceImpl();
+
   @override
   Future<User> login(String email, String password) async {
     final response = await postServicio('/api/autenticacion/login', data: {
@@ -11,7 +13,12 @@ class AuthDataSourceImpl extends AuthDataSource with ArnuvServicios {
       'email': email,
       'password': password
     });
-  
+    try {
+      String token = response.headers.value('Authorization')!;
+      await keyValueStorageService.setKeyValue<String>('Authorization', token);
+    } catch ( e ) {
+      throw SystemException(e.toString());
+    }
     return User.fromJson(response.data["dto"]);
   }
   
