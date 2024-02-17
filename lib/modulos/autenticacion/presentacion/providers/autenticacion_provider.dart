@@ -1,4 +1,7 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:arnuvapp/modulos/shared/shared.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:arnuvapp/modulos/autenticacion/domain/domain.dart';
 import 'package:arnuvapp/modulos/autenticacion/infraestructura/infrastructure.dart';
@@ -78,7 +81,27 @@ class AuthNotifier extends ArnuvNotifier<AuthState>  {
       logout( 'Error no controlado: ${e.toString()}' );
     }
     super.closeLoading(context);
+  }
+  
+  Future<void> confirmacionContrasenia( String token, String passwordAnterior, String nuevoPass, String confirmacionPass, BuildContext context ) async {
+    super.showLoading(context);
+    await keyValueStorageService.removeKey('Authorization');
+    await keyValueStorageService.setKeyValue('Authorization', token);
+    await Future.delayed(const Duration(seconds: 1));
 
+    try {
+      final user = await authRepository.confirmarPassword(passwordAnterior, nuevoPass, confirmacionPass);
+      final menu = await authRepository.checkMenuLogin();
+      _setUsuarioLogeado( user, menu.lista );
+      context.push(ConstRoutes.NAVEGACION);
+    } on AutenticacionException catch (e) {
+      logout( e.message );
+    } on SystemException catch (e) {
+      logout( e.message );
+    } catch (e){
+      logout( 'Error no controlado: ${e.toString()}' );
+    }
+    super.closeLoading(context);
   }
 
   void registerUser( String email, String password ) async {

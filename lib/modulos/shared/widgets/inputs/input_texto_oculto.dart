@@ -43,12 +43,14 @@ class InputTextoOculto extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         SizedBox(height: espacioTop),
         TextFormField(
           inputFormatters: [
             LengthLimitingTextInputFormatter(maxLength ?? 255),
           ],
+
           autocorrect: false,
           obscureText: mostrarTexto,
           keyboardType: TextInputType.visiblePassword,
@@ -70,15 +72,3 @@ class InputTextoOculto extends StatelessWidget {
     );
   }
 }
-
-// class InputTextoOcultoController extends GetxController {
-//   RxBool mostrarTextoContrasenia = true.obs;
-//   RxBool mostrarTextoRepetir = true.obs;
-
-//   onMostrarContrasenia() {
-//     mostrarTextoContrasenia.value = !mostrarTextoContrasenia.value;
-//   }
-//   onMostrarContraseniaRepetida() {
-//     mostrarTextoRepetir.value = !mostrarTextoRepetir.value;
-//   }
-// }

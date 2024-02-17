@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:formz/formz.dart';
 import 'package:arnuvapp/modulos/autenticacion/presentacion/providers/autenticacion_provider.dart';
@@ -21,7 +22,7 @@ class LoginFormNotifier extends StateNotifier<LoginFormState> {
 
   LoginFormNotifier({
     required this.loginUserCallback,
-  }): super( LoginFormState() );
+  }): super( LoginFormState( formKey: GlobalKey<FormState>() ) );
   
   onEmailChange( String value ) {
     final newEmail = Email.dirty(value);
@@ -67,6 +68,12 @@ class LoginFormNotifier extends StateNotifier<LoginFormState> {
 
   }
 
+  esFormularioValido() {
+    state = state.copyWith( esValido: false );
+    if (state.formKey.currentState?.validate() != true) return;
+    state = state.copyWith( esValido: true );
+  }
+
 }
 
 
@@ -77,12 +84,14 @@ class LoginFormState {
   final Email email;
   final Password password;
   final bool mostrarTextoContrasenia;
+  GlobalKey<FormState> formKey;
 
   LoginFormState({
     this.esValido = false,
     this.email = const Email.pure(),
     this.password = const Password.pure(),
     this.mostrarTextoContrasenia = true,
+    required this.formKey,
   });
 
   LoginFormState copyWith({
@@ -90,12 +99,14 @@ class LoginFormState {
     bool? esValido,
     Email? email,
     Password? password,
-    bool? mostrarTextoContrasenia
+    bool? mostrarTextoContrasenia,
+    GlobalKey<FormState>? formKey
   }) => LoginFormState(
     esValido: esValido ?? this.esValido,
     email: email ?? this.email,
     password: password ?? this.password,
     mostrarTextoContrasenia: mostrarTextoContrasenia ?? this.mostrarTextoContrasenia,
+    formKey: formKey ?? this.formKey,
   );
 
 }

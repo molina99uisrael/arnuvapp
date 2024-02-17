@@ -22,7 +22,7 @@ class LoginScreen extends StatelessWidget {
               children: [
                 const SizedBox( height: 600 ),
                 CardContainer(
-                  height: 270,
+                  height: 300,
                   width: (size.width > 600) ? size.width * 0.5 : size.width,
                   child: const _LoginForm(),
                 )  
@@ -44,6 +44,7 @@ class _LoginForm extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
 
     final loginForm = ref.watch(loginFormProvider);
+    final loginMetodosForm = ref.watch(loginFormProvider.notifier);
     final localizations = AppLocalizations.of(context);
 
     final valiacion = ValidacionesInputUtil(localizations: localizations);
@@ -53,37 +54,42 @@ class _LoginForm extends ConsumerWidget {
       mostrarErrorSnackBar( context, next.errorMessage, ref);
     });
 
-    return Column(
-      children: [
-        const SizedBox(height: 10),
-        InputTexto(
-          textInputType: TextInputType.emailAddress,
-          label: localizations.translate('lblEmil'),
-          prefixIcon: Icons.person_outline,
-          maxLength: 100,
-          onChange: ref.read(loginFormProvider.notifier).onEmailChange,
-          validacion: (valor) => valiacion.validarEmail(valor),
-        ),
-        const SizedBox(height: 20),
-        InputTextoOculto(
-          mostrarTexto: ref.read(loginFormProvider).mostrarTextoContrasenia,
-          label: localizations.translate('lblContrasenia'),
-          prefixIcon: Icons.lock_outline,
-          maxLength: 16,
-          onChange: ref.read(loginFormProvider.notifier).onPasswordChanged,
-          validacion: (value) => valiacion.validarContrasenia(value),
-          onTapIcon: ref.read(loginFormProvider.notifier).onMostrarContrasenia,
-        ),
-        
-        BotonPrimario(
-          onPressed: loginForm.esValido 
-            ? () => ref.read(loginFormProvider.notifier).onFormSubmit(context)
-            : null,
-          label: localizations.translate('btnLogin'),
-          mt: 20,
-        ),
+    return Form(
+      autovalidateMode: AutovalidateMode.onUserInteraction,
+      key: loginForm.formKey,
+      onChanged: loginMetodosForm.esFormularioValido,
+      child: Column(
+        children: [
+          const SizedBox(height: 10),
+          InputTexto(
+            textInputType: TextInputType.emailAddress,
+            label: localizations.translate('lblEmil'),
+            prefixIcon: Icons.person_outline,
+            maxLength: 100,
+            onChange: loginMetodosForm.onEmailChange,
+            validacion: (valor) => valiacion.validarEmail(valor),
+          ),
+          const SizedBox(height: 20),
+          InputTextoOculto(
+            mostrarTexto: loginForm.mostrarTextoContrasenia,
+            label: localizations.translate('lblContrasenia'),
+            prefixIcon: Icons.lock_outline,
+            maxLength: 16,
+            onChange: loginMetodosForm.onPasswordChanged,
+            validacion: (value) => valiacion.validarContrasenia(value),
+            onTapIcon: loginMetodosForm.onMostrarContrasenia,
+          ),
+          
+          BotonPrimario(
+            onPressed: loginForm.esValido 
+              ? () => loginMetodosForm.onFormSubmit(context)
+              : null,
+            label: localizations.translate('btnLogin'),
+            mt: 20,
+          ),
 
-      ],
+        ],
+      )
     );
   }
 }

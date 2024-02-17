@@ -40,4 +40,20 @@ class AuthDataSourceImpl extends AuthDataSource with ArnuvServicios {
     return resp;
   }
   
+  @override
+  Future<User> confirmarPassword(String passwordAnterior, String nuevoPass, String confirmacionPass) async {
+    try {
+      final response = await postServicio('/api/autenticacion/confirmarpassword', data: {
+        'serial': await getUuid(true),
+        'passwordAnterior': passwordAnterior,
+        'nuevoPass': nuevoPass,
+        'confirmacionPass': confirmacionPass
+      });
+
+      return User.fromJson(response.data["dto"]);
+    } on SystemException catch (e) {
+      throw AutenticacionException(e.message);
+    }
+  }
+  
 }

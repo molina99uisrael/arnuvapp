@@ -3,6 +3,7 @@
 class ConstRoutes {
 
   static const SPLASH = '/splash';
+  static const CONFIRMACION_CONTRASENIA = '/confirmacion';
   static const IDIOMA = '/idioma';
   static const LOGIN = '/login';
   static const REGISTRARSE = '/registrarse';

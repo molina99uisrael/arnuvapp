@@ -12,6 +12,7 @@ Map<String, String> spanish() {
     'validarSoloNumeros': 'Solo se puede ingresar números',
     'validarEmail': 'Ingrese un correo electrónico correcto',
     'validarPassword': 'Ingrese una contraseña correcta',
+    'validarPasswordIguales': 'Las contraseñas no coinciden',
 
     // AppBars
     'barMiCuenta': 'Mi cuenta',
@@ -58,6 +59,10 @@ Map<String, String> spanish() {
     'lblCodRecurso': 'Código Recursos',
     'lblRuta': 'Ruta acceso aplicación',
     'lblSelectModulo': 'Selecciona módulo',
+    'lblPasswordAnterior': 'Contraseña anterior',
+    'lblNuevoPass': 'Nueva contraseña',
+    'lblConfirmarPass': 'Confirmar contraseña',
+    'lblConfirmacion': 'Confirmación de cuenta',
     
     // Labels de botones
     'btnOk': 'Ok',
