@@ -44,7 +44,7 @@ class TituloBannerHome extends StatelessWidget {
       child: Text(
         Environment.nombreApp,
         style: textStyles.textTheme.titleMedium!.copyWith(
-          color: textStyles.primaryColorLight
+          color: Colors.white
         ),
         textAlign: TextAlign.center,
       ),

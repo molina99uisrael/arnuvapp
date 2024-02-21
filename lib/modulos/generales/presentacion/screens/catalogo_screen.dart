@@ -88,48 +88,46 @@ class _Formulario extends ConsumerWidget {
     final valiacion = ValidacionesInputUtil(localizations: localizations);
     return Column(
       children: [
-        Form(
-          autovalidateMode: AutovalidateMode.onUserInteraction,
-          key: state.formKey,
-          onChanged: metodos.esFormularioValido,
-          child: Column(
-            children: [
-              InputTexto(
-                initialValue: state.registro.id.toString(),
-                textInputType: TextInputType.number,
-                label: localizations.translate('lblCodigo'),
-                maxLength: 10,
-                onChange: (value) => state.registro.id = int.tryParse(value) ?? 0,
-                validacion: (valor) => valiacion.validarSoloNumeros(valor),
-                readOnly: true,
-              ),
-              InputTexto(
-                initialValue: state.registro.nombre,
-                espacioTop: 20.0,
-                textInputType: TextInputType.text,
-                label: localizations.translate('lblNombres'),
-                maxLength: 100,
-                onChange: (value) => state.registro.nombre = value,    
-                validacion: (valor) => valiacion.validarSoloLetras(valor)         
-              ),
-              InputCheck(
-                label: localizations.translate('lblCheckActivo'), 
-                onChanged: metodos.setCheckActivo,
-                initialValue: state.registro.activo,
-              ),
-              BotonesForm(
-                esValidoForm: state.esValidoForm, 
-                onPressedOk: onPressedOk
-              )
-              
-            ],
-          )
-        
+        SizedBox(
+          width: 600,
+          child: Form(
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            key: state.formKey,
+            onChanged: metodos.esFormularioValido,
+            child: Column(
+              children: [
+                InputTexto(
+                  initialValue: state.registro.id.toString(),
+                  textInputType: TextInputType.number,
+                  label: localizations.translate('lblCodigo'),
+                  maxLength: 10,
+                  onChange: (value) => state.registro.id = int.tryParse(value) ?? 0,
+                  validacion: (valor) => valiacion.validarSoloNumeros(valor),
+                  readOnly: true,
+                ),
+                InputTexto(
+                  initialValue: state.registro.nombre,
+                  espacioTop: 20.0,
+                  textInputType: TextInputType.text,
+                  label: localizations.translate('lblNombres'),
+                  maxLength: 100,
+                  onChange: (value) => state.registro.nombre = value,    
+                  validacion: (valor) => valiacion.validarSoloLetras(valor)         
+                ),
+                InputCheck(
+                  label: localizations.translate('lblCheckActivo'), 
+                  onChanged: metodos.setCheckActivo,
+                  initialValue: state.registro.activo,
+                ),
+                BotonesForm(
+                  esValidoForm: state.esValidoForm, 
+                  onPressedOk: onPressedOk
+                )   
+              ],
+            )
+          ),
         )
-
       ],
     );
   }
 }
-
-

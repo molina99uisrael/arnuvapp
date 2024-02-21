@@ -93,61 +93,59 @@ class _Formulario extends ConsumerWidget {
     final valiacion = ValidacionesInputUtil(localizations: localizations);
     return Column(
       children: [
-        Form(
-          autovalidateMode: AutovalidateMode.onUserInteraction,
-          key: state.formKey,
-          onChanged: metodos.esFormularioValido,
-          child: Column(
-            children: [
-              InputTexto(
-                initialValue: state.registro.id.toString(),
-                textInputType: TextInputType.number,
-                label: localizations.translate('lblCodigo'),
-                maxLength: 10,
-                onChange: (value) => state.registro.id = int.tryParse(value) ?? 0,
-                validacion: (valor) => valiacion.validarSoloNumeros(valor),
-                readOnly: esActualizar,
-              ),
-              InputTexto(
-                initialValue: state.registro.nombre,
-                espacioTop: 20.0,
-                textInputType: TextInputType.text,
-                label: localizations.translate('lblNombres'),
-                maxLength: 100,
-                onChange: (value) => state.registro.nombre = value,    
-                validacion: (valor) => valiacion.validarSoloLetras(valor)         
-              ),
-              DropdownPersonalizado(
-                label: localizations.translate('lblSeguridadPol'),
-                porcentajeWidth: 0.6,
-                transaparente: true,
-                value: stateSegPolitica.registroSelect.id.toString(), 
-                onchange: metodosSegPolitica.onSeleccionChange,
-                items: stateSegPolitica.lregistros.map<DropdownMenuItem<String>>((SeguridadPolitica value) {
-                  return DropdownMenuItem<String>(
-                    value: value.id.toString(),
-                    child: Text(value.id.toString()),
-                  );
-                }).toList(),
-              ),
-              InputCheck(
-                label: localizations.translate('lblCheckActivo'), 
-                onChanged: metodos.setCheckActivo,
-                initialValue: state.registro.activo,
-              ),
-              BotonesForm(
-                esValidoForm: state.esValidoForm, 
-                onPressedOk: onPressedOk
-              )
-              
-            ],
-          )
-        
+        SizedBox(
+          width: 600,
+          child: Form(
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            key: state.formKey,
+            onChanged: metodos.esFormularioValido,
+            child: Column(
+              children: [
+                InputTexto(
+                  initialValue: state.registro.id.toString(),
+                  textInputType: TextInputType.number,
+                  label: localizations.translate('lblCodigo'),
+                  maxLength: 10,
+                  onChange: (value) => state.registro.id = int.tryParse(value) ?? 0,
+                  validacion: (valor) => valiacion.validarSoloNumeros(valor),
+                  readOnly: true,
+                ),
+                InputTexto(
+                  initialValue: state.registro.nombre,
+                  espacioTop: 20.0,
+                  textInputType: TextInputType.text,
+                  label: localizations.translate('lblNombres'),
+                  maxLength: 100,
+                  onChange: (value) => state.registro.nombre = value,    
+                  validacion: (valor) => valiacion.validarSoloLetras(valor)         
+                ),
+                DropdownPersonalizado(
+                  label: localizations.translate('lblSeguridadPol'),
+                  porcentajeWidth: 0.27,
+                  transaparente: true,
+                  value: stateSegPolitica.registroSelect.id.toString(), 
+                  onchange: metodosSegPolitica.onSeleccionChange,
+                  items: stateSegPolitica.lregistros.map<DropdownMenuItem<String>>((SeguridadPolitica value) {
+                    return DropdownMenuItem<String>(
+                      value: value.id.toString(),
+                      child: Text(value.id.toString()),
+                    );
+                  }).toList(),
+                ),
+                InputCheck(
+                  label: localizations.translate('lblCheckActivo'), 
+                  onChanged: metodos.setCheckActivo,
+                  initialValue: state.registro.activo,
+                ),
+                BotonesForm(
+                  esValidoForm: state.esValidoForm, 
+                  onPressedOk: onPressedOk
+                )   
+              ],
+            )
+          ), 
         )
-
       ],
     );
   }
 }
-
-

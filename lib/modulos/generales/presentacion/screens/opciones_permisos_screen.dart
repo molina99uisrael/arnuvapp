@@ -117,100 +117,137 @@ class _Formulario extends ConsumerWidget {
     final valiacion = ValidacionesInputUtil(localizations: localizations);
     return Column(
       children: [
-        Form(
-          autovalidateMode: AutovalidateMode.onUserInteraction,
-          key: state.formKey,
-          onChanged: metodos.esFormularioValido,
-          child: Column(
-            children: [
-              InputTexto(
-                initialValue: state.registro.id.idrol.toString(),
-                textInputType: TextInputType.number,
-                label: localizations.translate('lblIdrol'),
-                maxLength: 10,
-                onChange: (value) => state.registro.id.idrol = int.tryParse(value) ?? 0,
-                validacion: (valor) => valiacion.validarSoloNumeros(valor),
-                readOnly: true,
-              ),
-              InputTexto(
-                initialValue: state.registro.id.idopcion.toString(),
-                textInputType: TextInputType.number,
-                espacioTop: 20.0,
-                label: localizations.translate('lblIdOpcion'),
-                maxLength: 10,
-                onChange: (value) => state.registro.id.idopcion = int.tryParse(value) ?? 0,
-                validacion: (valor) => valiacion.validarSoloNumeros(valor),
-                readOnly: esActualizar,
-              ),
-              InputTexto(
-                initialValue: state.registro.idopcionpadre.toString(),
-                textInputType: TextInputType.number,
-                espacioTop: 20.0,
-                label: localizations.translate('lblOpcionPadre'),
-                maxLength: 10,
-                onChange: (value) => state.registro.idopcionpadre = int.tryParse(value),
-                // validacion: (valor) => valiacion.validarSoloNumeros(valor),
-              ),
-              InputTexto(
-                initialValue: state.registro.nombre,
-                espacioTop: 20.0,
-                textInputType: TextInputType.text,
-                label: localizations.translate('lblNombreItem'),
-                maxLength: 100,
-                onChange: (value) => state.registro.nombre = value,    
-                // validacion: (valor) => valiacion.validarSoloLetras(valor)      
-              ),
-              DropdownPersonalizado(
-                label: localizations.translate('lblRecurso'),
-                porcentajeWidth: 0.6,
-                transaparente: true,
-                value: stateRecursos.registroSelect.id.toString(), 
-                onchange: metodosRecursos.onSeleccionChange,
-                items: stateRecursos.lregistros.map<DropdownMenuItem<String>>((Recursos value) {
-                  return DropdownMenuItem<String>(
-                    value: value.id.toString(),
-                    child: Text(value.nombre),
-                  );
-                }).toList(),
-              ),
-              InputCheck(
-                label: localizations.translate('lblCheckActivo'), 
-                onChanged: metodos.setCheckActivo,
-                initialValue: state.registro.activo,
-              ),
-              InputCheck(
-                label: localizations.translate('lblCheckMostrar'), 
-                onChanged: metodos.setCheckMostrar,
-                initialValue: state.registro.mostar,
-              ),
-              InputCheck(
-                label: localizations.translate('lblCheckCrear'), 
-                onChanged: metodos.setCheckCrear,
-                initialValue: state.registro.crear,
-              ),
-              InputCheck(
-                label: localizations.translate('lblCheckEditar'), 
-                onChanged: metodos.setCheckEditar,
-                initialValue: state.registro.editar,
-              ),
-              InputCheck(
-                label: localizations.translate('lblCheckEliminar'), 
-                onChanged: metodos.setCheckEliminar,
-                initialValue: state.registro.eliminar,
-              ),
-              BotonesForm(
-                esValidoForm: state.esValidoForm, 
-                onPressedOk: onPressedOk
-              )
-              
-            ],
-          )
-        
-        )
-
+        SizedBox(
+          width: 600,
+          child: Form(
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            key: state.formKey,
+            onChanged: metodos.esFormularioValido,
+            child: Column(
+              children: [
+                //if (false)
+                InputTexto(
+                  initialValue: state.registro.id.idrol.toString(),
+                  textInputType: TextInputType.number,
+                  label: localizations.translate('lblIdrol'),
+                  maxLength: 10,
+                  onChange: (value) => state.registro.id.idrol = int.tryParse(value) ?? 0,
+                  validacion: (valor) => valiacion.validarSoloNumeros(valor),
+                  readOnly: true,
+                ),
+                InputTexto(
+                  initialValue: state.registro.id.idopcion.toString(),
+                  textInputType: TextInputType.number,
+                  espacioTop: 20.0,
+                  label: localizations.translate('lblIdOpcion'),
+                  maxLength: 10,
+                  onChange: (value) => state.registro.id.idopcion = int.tryParse(value) ?? 0,
+                  validacion: (valor) => valiacion.validarSoloNumeros(valor),
+                  readOnly: esActualizar,
+                ),
+                InputTexto(
+                  initialValue: state.registro.idopcionpadre.toString(),
+                  textInputType: TextInputType.number,
+                  espacioTop: 20.0,
+                  label: localizations.translate('lblOpcionPadre'),
+                  maxLength: 10,
+                  onChange: (value) => state.registro.idopcionpadre = int.tryParse(value),
+                  // validacion: (valor) => valiacion.validarSoloNumeros(valor),
+                ),
+                InputTexto(
+                  initialValue: state.registro.nombre,
+                  espacioTop: 20.0,
+                  textInputType: TextInputType.text,
+                  label: localizations.translate('lblNombreItem'),
+                  maxLength: 100,
+                  onChange: (value) => state.registro.nombre = value,    
+                  // validacion: (valor) => valiacion.validarSoloLetras(valor)      
+                ),
+                DropdownPersonalizado(
+                  label: localizations.translate('lblRecurso'),
+                  porcentajeWidth: 0.27,
+                  transaparente: true,
+                  value: stateRecursos.registroSelect.id.toString(), 
+                  onchange: metodosRecursos.onSeleccionChange,
+                  items: stateRecursos.lregistros.map<DropdownMenuItem<String>>((Recursos value) {
+                    return DropdownMenuItem<String>(
+                      value: value.id.toString(),
+                      child: Text(value.nombre),
+                    );
+                  }).toList(),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Flexible(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                localizations.translate('lblEstados'),
+                                style: DefaultTextStyle.of(context).style.apply(fontSizeFactor: 1.2),
+                              )
+                            ],
+                          ),
+                          InputCheck(
+                            label: localizations.translate('lblCheckActivo'), 
+                            onChanged: metodos.setCheckActivo,
+                            initialValue: state.registro.activo,
+                          ),
+                          InputCheck(
+                            label: localizations.translate('lblCheckMostrar'), 
+                            onChanged: metodos.setCheckMostrar,
+                            initialValue: state.registro.mostar,
+                          ),
+                        ],
+                      ),
+                    ),
+                    Flexible(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                localizations.translate('lblPermisos'),
+                                style: DefaultTextStyle.of(context).style.apply(fontSizeFactor: 1.2),
+                              ),
+                            ],
+                          ),
+                          InputCheck(
+                            label: localizations.translate('lblCheckCrear'), 
+                            onChanged: metodos.setCheckCrear,
+                            initialValue: state.registro.crear,
+                          ),
+                          InputCheck(
+                            label: localizations.translate('lblCheckEditar'), 
+                            onChanged: metodos.setCheckEditar,
+                            initialValue: state.registro.editar,
+                          ),
+                          InputCheck(
+                            label: localizations.translate('lblCheckEliminar'), 
+                            onChanged: metodos.setCheckEliminar,
+                            initialValue: state.registro.eliminar,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+                BotonesForm(
+                  esValidoForm: state.esValidoForm, 
+                  onPressedOk: onPressedOk
+                )
+              ],
+            )
+          ),
+        ),
       ],
     );
   }
 }
-
-

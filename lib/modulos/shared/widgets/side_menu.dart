@@ -78,7 +78,7 @@ class SideMenuState extends ConsumerState<SideMenu> {
             }
           ),
         ),
-
+        const Divider()
       ]
     );
   }

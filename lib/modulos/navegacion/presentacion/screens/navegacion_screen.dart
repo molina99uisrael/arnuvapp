@@ -35,7 +35,7 @@ class _NavegacionApp extends ConsumerWidget {
     
     return Scaffold(
       drawer: SideMenu( scaffoldKey: scaffoldKey ),
-      backgroundColor: themeStyle.primaryColor,
+      backgroundColor: Colors.white,
       appBar: AppBar(),
       body: _children[navegacion.menuIndex],
       bottomNavigationBar: BottomNavigationBar(

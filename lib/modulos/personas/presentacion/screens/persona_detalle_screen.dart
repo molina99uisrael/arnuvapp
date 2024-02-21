@@ -97,79 +97,79 @@ class _Formulario extends ConsumerWidget {
     final valiacion = ValidacionesInputUtil(localizations: localizations);
     return Column(
       children: [
-        Form(
-          autovalidateMode: AutovalidateMode.onUserInteraction,
-          key: state.formKey,
-          onChanged: metodos.esFormularioValido,
-          child: Column(
-            children: [
-              InputTexto(
-                initialValue: state.registro.nombres,
-                textInputType: TextInputType.text,
-                label: localizations.translate('lblNombres'),
-                maxLength: 120,
-                onChange: (value) => state.registro.nombres = value,          
-                validacion: (valor) => valiacion.validarSoloLetras(valor)
-              ),
-              InputTexto(
-                initialValue: state.registro.apellidos,
-                espacioTop: 20.0,
-                textInputType: TextInputType.text,
-                label: localizations.translate('lblApellidos'),
-                maxLength: 120,
-                onChange: (value) => state.registro.apellidos = value,    
-                validacion: (valor) => valiacion.validarSoloLetras(valor)         
-              ),
-              InputTexto(
-                initialValue: state.registro.identificacion,
-                espacioTop: 20.0,
-                textInputType: TextInputType.number,
-                label: localizations.translate('lblIdentificacion'),
-                maxLength: 15,
-                onChange: (value) => state.registro.identificacion = value,  
-                validacion: (valor) => valiacion.validarSoloNumeros(valor)              
-              ),
-              InputTexto(
-                initialValue: state.registro.celular,
-                espacioTop: 20.0,
-                textInputType: TextInputType.phone,
-                label: localizations.translate('lblCelular'),
-                maxLength: 20,
-                onChange: (value) => state.registro.celular = value, 
-                validacion: (valor) => valiacion.validarSoloNumeros(valor)         
-              ),
-              InputTexto(
-                initialValue: state.registro.email,
-                espacioTop: 20.0,
-                textInputType: TextInputType.emailAddress,
-                label: localizations.translate('lblEmil'),
-                maxLength: 150,
-                onChange: (value) => state.registro.email = value, 
-                validacion: (valor) => valiacion.validarEmail(valor)             
-              ),
-              DropdownPersonalizado(
-                label: localizations.translate('lblTipoIdentificacion'),
-                porcentajeWidth: 0.6,
-                transaparente: true,
-                value: stateCatalogoDetalle.registroSelect.id.iddetalle.toString(), 
-                onchange: metodosCatalogoDetalle.onSeleccionChange,
-                items: stateCatalogoDetalle.lregistros.map<DropdownMenuItem<String>>((CatalogoDetalle value) {
-                  return DropdownMenuItem<String>(
-                    value: value.id.iddetalle.toString(),
-                    child: Text(value.nombre),
-                  );
-                }).toList(),
-              ),
-              BotonesForm(
-                esValidoForm: state.esValidoForm, 
-                onPressedOk: onPressedOk
-              )
-              
-            ],
-          )
-        
+        SizedBox(
+          width: 600,
+          child: Form(
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            key: state.formKey,
+            onChanged: metodos.esFormularioValido,
+            child: Column(
+              children: [
+                InputTexto(
+                  initialValue: state.registro.nombres,
+                  textInputType: TextInputType.text,
+                  label: localizations.translate('lblNombres'),
+                  maxLength: 120,
+                  onChange: (value) => state.registro.nombres = value,          
+                  validacion: (valor) => valiacion.validarSoloLetras(valor)
+                ),
+                InputTexto(
+                  initialValue: state.registro.apellidos,
+                  espacioTop: 20.0,
+                  textInputType: TextInputType.text,
+                  label: localizations.translate('lblApellidos'),
+                  maxLength: 120,
+                  onChange: (value) => state.registro.apellidos = value,    
+                  validacion: (valor) => valiacion.validarSoloLetras(valor)         
+                ),
+                InputTexto(
+                  initialValue: state.registro.identificacion,
+                  espacioTop: 20.0,
+                  textInputType: TextInputType.number,
+                  label: localizations.translate('lblIdentificacion'),
+                  maxLength: 15,
+                  onChange: (value) => state.registro.identificacion = value,  
+                  validacion: (valor) => valiacion.validarSoloNumeros(valor)              
+                ),
+                InputTexto(
+                  initialValue: state.registro.celular,
+                  espacioTop: 20.0,
+                  textInputType: TextInputType.phone,
+                  label: localizations.translate('lblCelular'),
+                  maxLength: 20,
+                  onChange: (value) => state.registro.celular = value, 
+                  validacion: (valor) => valiacion.validarSoloNumeros(valor)         
+                ),
+                InputTexto(
+                  initialValue: state.registro.email,
+                  espacioTop: 20.0,
+                  textInputType: TextInputType.emailAddress,
+                  label: localizations.translate('lblEmil'),
+                  maxLength: 150,
+                  onChange: (value) => state.registro.email = value, 
+                  validacion: (valor) => valiacion.validarEmail(valor)             
+                ),
+                DropdownPersonalizado(
+                  label: localizations.translate('lblTipoIdentificacion'),
+                  porcentajeWidth: 0.27,
+                  transaparente: true,
+                  value: stateCatalogoDetalle.registroSelect.id.iddetalle.toString(), 
+                  onchange: metodosCatalogoDetalle.onSeleccionChange,
+                  items: stateCatalogoDetalle.lregistros.map<DropdownMenuItem<String>>((CatalogoDetalle value) {
+                    return DropdownMenuItem<String>(
+                      value: value.id.iddetalle.toString(),
+                      child: Text(value.nombre),
+                    );
+                  }).toList(),
+                ),
+                BotonesForm(
+                  esValidoForm: state.esValidoForm, 
+                  onPressedOk: onPressedOk
+                )   
+              ],
+            )
+          ),
         )
-
       ],
     );
   }

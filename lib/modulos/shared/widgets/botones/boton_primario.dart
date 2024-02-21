@@ -67,7 +67,7 @@ class BotonPrimario extends StatelessWidget {
 
   ButtonStyle _estiloBoton () {
     return ElevatedButton.styleFrom(
-      backgroundColor: color ?? const Color.fromARGB(255, 193, 79, 255),
+      backgroundColor: color ?? const Color.fromARGB(255, 153, 0, 183),
       disabledForegroundColor: const Color.fromARGB(255, 159, 107, 186),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(radius ?? 15.0),

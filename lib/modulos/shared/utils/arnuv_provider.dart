@@ -28,10 +28,7 @@ abstract class ArnuvNotifier<T> extends StateNotifier<T> {
   }
 
   void showLoading(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      isScrollControlled: true,
-      shape: const Border.symmetric(horizontal: BorderSide.none,vertical: BorderSide.none),
+    Navigator.of(context).push(MaterialPageRoute<void>(
       builder: (BuildContext context) {
         return const SizedBox(
           height: double.infinity,
@@ -44,7 +41,8 @@ abstract class ArnuvNotifier<T> extends StateNotifier<T> {
           ),
         );
       },
-    );
+    fullscreenDialog: true
+  ));
   }
   
   void closeLoading(BuildContext context) {
