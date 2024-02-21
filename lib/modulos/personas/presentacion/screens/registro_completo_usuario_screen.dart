@@ -147,14 +147,14 @@ class _Formulario extends ConsumerWidget {
                 onChange: (value) => stateForm.registro.username = value,
                 validacion: (valor) => validacion.validarLetrasNumeros(valor),
               ),
-              InputTextoOculto(
-                mostrarTexto: true,
-                espacioTop: 20.0,
-                label: localizations.translate('lblContrasenia'),
-                maxLength: 16,
-                onChange: (value) => stateForm.registro.password = value,
-                validacion: (value) => validacion.validarContrasenia(value),
-              ),
+              // InputTextoOculto(
+              //   mostrarTexto: true,
+              //   espacioTop: 20.0,
+              //   label: localizations.translate('lblContrasenia'),
+              //   maxLength: 16,
+              //   onChange: (value) => stateForm.registro.password = value,
+              //   validacion: (value) => validacion.validarContrasenia(value),
+              // ),
               DropdownPersonalizado(
                 label: localizations.translate('lblSelRol'),
                 value: stateRol.registroSelect.id.toString(),

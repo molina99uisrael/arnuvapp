@@ -1,4 +1,4 @@
-import 'package:arnuvapp/modulos/shared/presentacion/pagana_construccion.dart';
+import 'package:arnuvapp/modulos/shared/presentacion/pagina_construccion.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:arnuvapp/config/router/const_routes.dart';
@@ -18,6 +18,16 @@ final goRouterProvider = Provider((ref) {
       GoRoute(
         path: ConstRoutes.SPLASH,
         builder: (context, state) => const CheckAuthStatusScreen(),
+      ),
+      GoRoute(
+        path: ConstRoutes.CONFIRMACION_CONTRASENIA,
+        builder: (context, state) {
+          final token = state.queryParams['token'];
+          if (token == null) {
+            return const PaginaErrorScreen();
+          }
+          return ConfirmacionContraseniaScreen(token: token);
+        },
       ),
       ///* Navegacion Routes
       GoRoute(
@@ -131,7 +141,7 @@ final goRouterProvider = Provider((ref) {
       if ( isGoingTo == ConstRoutes.SPLASH && authStatus == AuthStatus.checking ) return null;
 
       if ( authStatus == AuthStatus.notAuthenticated ) {
-        if ( isGoingTo == ConstRoutes.LOGIN ) return null;
+        if ( isGoingTo == ConstRoutes.LOGIN || isGoingTo == ConstRoutes.CONFIRMACION_CONTRASENIA ) return null;
 
         return ConstRoutes.LOGIN;
       }

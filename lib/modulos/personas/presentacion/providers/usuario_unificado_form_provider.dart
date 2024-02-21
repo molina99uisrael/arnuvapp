@@ -55,7 +55,6 @@ class UsuarioUnificadoFormNotifier extends ArnuvNotifier<UsuarioUnificadoFormSta
       }
       state = state.copyWith(
         registro: state.registro.copyWith(
-          password: ArnuvUtils.hashSHA256(state.registro.password),
           idcatalogoidentificacion: catdet.id.idcatalogo,
           iddetalleidentificacion: catdet.id.iddetalle,
           idrol: rol.id

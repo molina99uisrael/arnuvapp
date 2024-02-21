@@ -52,6 +52,24 @@ class ValidacionesInputUtil {
       ? null 
       : localizations.translate('validarSoloNumeros');
   }
+
+  validarArgumentosIguales(String value1, String value2, msg ) {
+    if (value1.isEmpty) return null;
+    if (value2.isEmpty) return null;
+
+    return ( value1 == value2 ) 
+    ? null 
+    : msg;
+  }
+
+  // Valida la confirmacion de la contrasenia
+  validarRepeticionContrasenia( value1, value2 ) {
+    var validaContrasenia = validarContrasenia(value1);
+    if (validaContrasenia != null) return localizations.translate('validarPassword');
+    var validaArgumentosIguales = validarArgumentosIguales(value1, value2, localizations.translate('validarPasswordIguales'));
+    return (validaContrasenia == null) ? validaArgumentosIguales : null;
+
+  }
   
   // valida el ingreso del nombre de usuario
   static validarNombreUsuario( String value, String msg ) {

@@ -6,7 +6,7 @@ import 'package:arnuvapp/modulos/shared/widgets/inputs/input_decoration.dart';
 class InputTexto extends StatelessWidget {
   
   final String? hint;
-  final bool? obscureText;
+  final bool? mostrarTexto;
   final IconData? prefixIcon;
   final Color? color;
   final String? initialValue;
@@ -26,7 +26,7 @@ class InputTexto extends StatelessWidget {
   const InputTexto({
     Key? key, 
     this.hint,
-    this.obscureText,
+    this.mostrarTexto,
     this.prefixIcon,
     this.color,
     this.initialValue,
@@ -56,11 +56,13 @@ class InputTexto extends StatelessWidget {
           ],
           initialValue: initialValue,
           autocorrect: false,
-          obscureText: obscureText ?? false,
+          obscureText: mostrarTexto ?? false,
           keyboardType: textInputType,
           readOnly: readOnly ?? false,
           maxLines: maxLines ?? 1,
           textAlign: textAlign ?? TextAlign.left,
+          onChanged: onChange,
+          validator: validacion,
           decoration: InputDecorations.inputDecorationPersonalizado(
             hintText: hint ?? '',
             labelText: label ?? '',
@@ -69,8 +71,6 @@ class InputTexto extends StatelessWidget {
             onTap: onTapIcon,
             colorDecoration: colorIcon == null ?  const Color.fromRGBO(179, 0, 255, 1) : colorIcon!
           ),
-          onChanged: onChange,
-          validator: validacion
         ),
       ],
     );

@@ -12,6 +12,7 @@ Map<String, String> english() {
     'validarSoloNumeros': 'You can only enter numbers',
     'validarEmail': 'Please enter a correct email',
     'validarPassword': 'Enter a correct password',
+    'validarPasswordIguales': 'Passwords do not match',
 
     // AppBars
     'barMiCuenta': 'My account',
@@ -58,6 +59,10 @@ Map<String, String> english() {
     'lblCodRecurso': 'Code Resources',
     'lblRuta': 'Application path',
     'lblSelectModulo': 'Select module',
+    'lblPasswordAnterior': 'Old Password',
+    'lblNuevoPass': 'New Password',
+    'lblConfirmarPass': 'Confirm Password',
+    'lblConfirmacion': 'Account confirmation',
     
     // Mensaje de botones
     'btnOk': 'Ok',

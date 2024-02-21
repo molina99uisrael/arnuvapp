@@ -21,5 +21,10 @@ class AuthRepositoryImpl extends AuthRepository {
   Future<MenuResponse> checkMenuLogin() {
     return dataSource.checkMenuLogin();
   }
+  
+  @override
+  Future<User> confirmarPassword(String passwordAnterior, String nuevoPass, String confirmacionPass) {
+    return dataSource.confirmarPassword(passwordAnterior, nuevoPass, confirmacionPass);
+  }
 
 }
