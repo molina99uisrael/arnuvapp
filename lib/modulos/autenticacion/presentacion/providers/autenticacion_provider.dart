@@ -110,12 +110,8 @@ class AuthNotifier extends ArnuvNotifier<AuthState>  {
     await Future.delayed(const Duration(seconds: 1));
 
     try {
-      final valor = await authRepository.olvidoPassword(email);
-      if (valor) {
-        context.push(ConstRoutes.LOGIN);
-      } else {
-        logout( 'El proceso no fue exitoso' );
-      }
+      await authRepository.olvidoPassword(email);
+      context.push(ConstRoutes.LOGIN); 
     } on AutenticacionException catch (e) {
       logout( e.message );
     } on SystemException catch (e) {
