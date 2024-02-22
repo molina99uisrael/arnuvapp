@@ -26,5 +26,10 @@ class AuthRepositoryImpl extends AuthRepository {
   Future<User> confirmarPassword(String passwordAnterior, String nuevoPass, String confirmacionPass) {
     return dataSource.confirmarPassword(passwordAnterior, nuevoPass, confirmacionPass);
   }
+  
+  @override
+  Future<bool> olvidoPassword(String email) {
+    return dataSource.olvidoPassword(email);
+  }
 
 }

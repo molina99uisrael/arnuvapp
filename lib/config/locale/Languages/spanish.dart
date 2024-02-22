@@ -65,6 +65,8 @@ Map<String, String> spanish() {
     'lblConfirmacion': 'Confirmación de cuenta',
     'lblEstados': 'Estados',
     'lblPermisos': 'Permisos',
+    'lblRestablecer': 'Reestablecer contraseña',
+    'lblOlvidarContrasenia': '¿Olvidaste tú contraseña?',
     
     // Labels de botones
     'btnOk': 'Ok',

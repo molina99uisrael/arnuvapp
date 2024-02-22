@@ -4,6 +4,7 @@ class ConstRoutes {
 
   static const SPLASH = '/splash';
   static const CONFIRMACION_CONTRASENIA = '/confirmacion';
+  static const RESTABLECER_CONTRASENIA = '/reestablecer-password';
   static const IDIOMA = '/idioma';
   static const LOGIN = '/login';
   static const REGISTRARSE = '/registrarse';

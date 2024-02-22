@@ -29,6 +29,10 @@ final goRouterProvider = Provider((ref) {
           return ConfirmacionContraseniaScreen(token: token);
         },
       ),
+      GoRoute(
+        path: ConstRoutes.RESTABLECER_CONTRASENIA,
+        builder: (context, state) => const OlvidoContraseniaScreen(),
+      ),
       ///* Navegacion Routes
       GoRoute(
         path: "/",
@@ -141,7 +145,7 @@ final goRouterProvider = Provider((ref) {
       if ( isGoingTo == ConstRoutes.SPLASH && authStatus == AuthStatus.checking ) return null;
 
       if ( authStatus == AuthStatus.notAuthenticated ) {
-        if ( isGoingTo == ConstRoutes.LOGIN || isGoingTo == ConstRoutes.CONFIRMACION_CONTRASENIA ) return null;
+        if ( isGoingTo == ConstRoutes.LOGIN || isGoingTo == ConstRoutes.CONFIRMACION_CONTRASENIA || isGoingTo == ConstRoutes.RESTABLECER_CONTRASENIA) return null;
 
         return ConstRoutes.LOGIN;
       }

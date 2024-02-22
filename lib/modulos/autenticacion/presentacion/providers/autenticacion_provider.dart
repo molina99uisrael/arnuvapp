@@ -103,6 +103,28 @@ class AuthNotifier extends ArnuvNotifier<AuthState>  {
     }
     super.closeLoading(context);
   }
+  
+  Future<void> olvidoContrasenia( String email, BuildContext context ) async {
+    super.showLoading(context);
+    await keyValueStorageService.removeKey('Authorization');
+    await Future.delayed(const Duration(seconds: 1));
+
+    try {
+      final valor = await authRepository.olvidoPassword(email);
+      if (valor) {
+        context.push(ConstRoutes.LOGIN);
+      } else {
+        logout( 'El proceso no fue exitoso' );
+      }
+    } on AutenticacionException catch (e) {
+      logout( e.message );
+    } on SystemException catch (e) {
+      logout( e.message );
+    } catch (e){
+      logout( 'Error no controlado: ${e.toString()}' );
+    }
+    super.closeLoading(context);
+  }
 
   void registerUser( String email, String password ) async {
     

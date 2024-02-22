@@ -65,6 +65,8 @@ Map<String, String> english() {
     'lblConfirmacion': 'Account confirmation',
     'lblEstados': 'Status',
     'lblPermisos': 'Permissions',
+    'lblRestablecer': 'Restore password',
+    'lblOlvidarContrasenia': 'Did you forget your password?',
     
     // Mensaje de botones
     'btnOk': 'Ok',
