@@ -114,6 +114,10 @@ class OpcionesPermisosNotifier extends ArnuvNotifier<OpcionesPermisosState> impl
     esFormularioValido();
   }
 
+  setCheckFather(bool? value) {
+    state = state.copyWith(isFather: value, registro: value == true ? state.registro : state.registro.copyWith(nombre: ''));
+  }
+
   listarPorIdRol(int idrol ) async {
     if (idrol == 0) return;
 
@@ -135,6 +139,7 @@ class OpcionesPermisosState extends ArnuvState {
   final OpcionesPermisos registro;
   final int idrol;
   final bool esValidoForm;
+  bool isFather;
   GlobalKey<FormState> formKey;
 
   OpcionesPermisosState({
@@ -142,6 +147,7 @@ class OpcionesPermisosState extends ArnuvState {
     required this.registro,
     this.idrol = 0,
     this.esValidoForm = false,
+    this.isFather = true,
     required this.formKey,
     super.errorMessage,
     super.succesMessage
@@ -152,12 +158,14 @@ class OpcionesPermisosState extends ArnuvState {
     OpcionesPermisos? registro,
     int? idrol,
     bool? esValidoForm,
+    bool? isFather,
     GlobalKey<FormState>? formKey
   }) => OpcionesPermisosState(
     lregistros: lregistros ?? this.lregistros,
     registro: registro ?? this.registro,
     idrol: idrol ?? this.idrol,
     esValidoForm: esValidoForm ?? this.esValidoForm,
+    isFather: isFather ?? this.isFather,
     formKey: formKey ?? this.formKey,
   );
   
@@ -166,6 +174,7 @@ class OpcionesPermisosState extends ArnuvState {
     formKey: formKey,
     registro: opcionesPermisosDefault.clone(),
     esValidoForm: esValidoForm,
+    isFather: isFather,
     idrol: idrol,
     lregistros: lregistros,
     errorMessage: errorMessage ?? super.errorMessage,

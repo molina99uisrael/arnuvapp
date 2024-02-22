@@ -113,7 +113,6 @@ class _Formulario extends ConsumerWidget {
     // Sacar informacion del dropdown por defecto
     final stateRecursos = ref.watch(recursosDropdownProvider);
     final metodosRecursos = ref.watch(recursosDropdownProvider.notifier);
-    
     final valiacion = ValidacionesInputUtil(localizations: localizations);
     return Column(
       children: [
@@ -153,15 +152,21 @@ class _Formulario extends ConsumerWidget {
                   onChange: (value) => state.registro.idopcionpadre = int.tryParse(value),
                   // validacion: (valor) => valiacion.validarSoloNumeros(valor),
                 ),
-                InputTexto(
-                  initialValue: state.registro.nombre,
-                  espacioTop: 20.0,
-                  textInputType: TextInputType.text,
-                  label: localizations.translate('lblNombreItem'),
-                  maxLength: 100,
-                  onChange: (value) => state.registro.nombre = value,    
-                  // validacion: (valor) => valiacion.validarSoloLetras(valor)      
+                InputCheck(
+                    label: "Padre", 
+                    onChanged: metodos.setCheckFather,
+                    initialValue: state.isFather,
                 ),
+                if (state.isFather)
+                  InputTexto(
+                    initialValue: state.registro.nombre,
+                    espacioTop: 20.0,
+                    textInputType: TextInputType.text,
+                    label: localizations.translate('lblNombreItem'),
+                    maxLength: 100,
+                    onChange: (value) => state.registro.nombre = value,    
+                    // validacion: (valor) => valiacion.validarSoloLetras(valor)      
+                  ),
                 DropdownPersonalizado(
                   label: localizations.translate('lblRecurso'),
                   porcentajeWidth: 0.27,
