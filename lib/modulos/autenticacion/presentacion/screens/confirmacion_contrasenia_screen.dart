@@ -23,7 +23,7 @@ class ConfirmacionContraseniaScreen extends StatelessWidget {
               children: [
                 const SizedBox( height: 600 ),
                 CardContainer(
-                  height: 420,
+                  height: 440,
                   width: (size.width > 600) ? size.width * 0.5 : size.width,
                   child: _ConfirmacionContraseniaForm(token: token),
                 )  
@@ -47,7 +47,8 @@ class _ConfirmacionContraseniaForm extends ConsumerWidget {
     final stateForm = ref.watch(contraseniaFormProvider);
     final metodosForm = ref.watch(contraseniaFormProvider.notifier);
     final localizations = AppLocalizations.of(context);
-
+    final themeStyle = Theme.of(context);
+    
     final valiacion = ValidacionesInputUtil(localizations: localizations);
 
     ref.listen(authProvider, (ArnuvState? previous , ArnuvState next) {
@@ -61,7 +62,7 @@ class _ConfirmacionContraseniaForm extends ConsumerWidget {
       onChanged: metodosForm.esFormularioValido,
       child: Column(
         children: [
-          Text(localizations.translate('lblConfirmacion')),
+          Text(localizations.translate('lblConfirmacion'), style: themeStyle.textTheme.headlineSmall),
           InputTextoOculto(
             mostrarTexto: stateForm.mostrarTexto1,
             espacioTop: 20,

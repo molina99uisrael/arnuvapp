@@ -79,6 +79,13 @@ class _LoginForm extends ConsumerWidget {
             validacion: (value) => valiacion.validarContrasenia(value),
             onTapIcon: loginMetodosForm.onMostrarContrasenia,
           ),
+
+          BotonTransparente(
+            mainAxisAlignment: MainAxisAlignment.end,
+            mt: 25,
+            onTap: () => context.push(ConstRoutes.RESTABLECER_CONTRASENIA),
+            label: localizations.translate('lblOlvidarContrasenia'),
+          ),
           
           BotonPrimario(
             onPressed: loginForm.esValido 

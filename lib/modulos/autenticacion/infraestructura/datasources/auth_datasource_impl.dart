@@ -56,4 +56,16 @@ class AuthDataSourceImpl extends AuthDataSource with ArnuvServicios {
     }
   }
   
+  @override
+  Future<bool> olvidoPassword(String email) async {
+    try {
+      final response = await postServicio('/api/autenticacion/recuperarcontrasenia/$email');
+      final valor = response.data["cod"] == "OK" ? true : false;
+
+      return valor;
+    } on SystemException catch (e) {
+      throw AutenticacionException(e.message);
+    }
+  }
+  
 }

@@ -6,3 +6,4 @@ export 'seg_politica_dropdown_provider.dart';
 export 'usuario_rol_provider.dart';
 export 'rol_dropdown_provider.dart';
 export 'contrasenia_form_provider.dart';
+export 'olvido_contrasenia_form_provider.dart';
