@@ -18,8 +18,8 @@ class Environment {
   }
 
   // static String apiUrl = dotenv.env['API_URL'] ?? 'https://vinculacion-production.up.railway.app';
-  // static String apiUrl = 'https://vinculacion-production.up.railway.app';
-  static String apiUrl = 'http://localhost:8080';
+  static String apiUrl = 'https://vinculacion-production.up.railway.app';
+  // static String apiUrl = 'http://localhost:8080';
   // static String apiUrl = 'http://192.168.100.31:8080';
 
 }
