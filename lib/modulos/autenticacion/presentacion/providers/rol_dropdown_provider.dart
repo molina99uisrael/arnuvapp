@@ -28,7 +28,7 @@ class RolDropdownNotifier extends ArnuvNotifier<RolDropdownState> {
 
   listar(int limit, int page) async {
     try {
-      final lista = await rolRepository.listar(limit, page);
+      final lista = await rolRepository.listarActivos(limit, page);
       lista.insert(0, rolDefault.clone());
       state = state.copyWith( lregistros: lista );
     } on AutenticacionException catch (e) {

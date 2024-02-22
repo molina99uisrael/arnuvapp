@@ -99,15 +99,13 @@ class _PerfilScreen extends ConsumerWidget {
     final size = MediaQuery.of(context).size;
     final themeStyle = Theme.of(context);
     return Stack(
+      alignment: Alignment.center,
       children: [
         SizedBox(
           height: 150,
           width: size.width,
         ),
         PositionedDirectional(
-          start: size.width / 2.75,
-          // end: 0,
-          top: 20,
           child: Container(
             decoration: BoxDecoration(
               color: Colors.black26,

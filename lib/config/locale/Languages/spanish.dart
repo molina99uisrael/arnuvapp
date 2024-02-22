@@ -48,7 +48,7 @@ Map<String, String> spanish() {
     'lblObservacion': 'Observación',
     'lblIdrol': 'Código rol',
     'lblIdOpcion': 'Código opción',
-    'lblOpcionPadre': 'Código opcion padre',
+    'lblOpcionPadre': 'Código opción padre',
     'lblNombreItem': 'Nombre item',
     'lblRecurso': 'Seleccionar recurso',
     'lblCheckMostrar': 'Mostrar',

@@ -12,5 +12,6 @@ abstract class RolRepository {
 
   Future<bool> eliminar( Rol rol );
 
+  Future<List<Rol>> listarActivos( int limit, int page );
 }
 

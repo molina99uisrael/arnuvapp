@@ -11,5 +11,6 @@ abstract class RolDataSource {
 
   Future<bool> eliminar( Rol rol );
 
+  Future<List<Rol>> listarActivos( int limit, int page );
 }
 

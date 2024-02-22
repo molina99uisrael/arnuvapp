@@ -44,5 +44,16 @@ class RolDataSourceImpl extends RolDataSource with ArnuvServicios {
       throw AutenticacionException(e.message);
     }
   }
+
+  @override
+  Future<List<Rol>> listarActivos(int limit, int page) async {
+    try {
+      final response = await getServicio('/roles/listarActivos');
+      var resp = RolMapper.listaJsonToList(response.data["lista"]);
+      return resp;
+    } on SystemException catch (e) {
+      throw AutenticacionException(e.message);
+    }
+  }
   
 }
