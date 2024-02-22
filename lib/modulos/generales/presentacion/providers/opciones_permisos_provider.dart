@@ -115,7 +115,7 @@ class OpcionesPermisosNotifier extends ArnuvNotifier<OpcionesPermisosState> impl
   }
 
   setCheckFather(bool? value) {
-    state = state.copyWith(isFather: value, registro: value == true ? state.registro : state.registro.copyWith(nombre: ''));
+    state = state.copyWith(isFather: value, registro: value == true ? state.registro : state.registro.copyWith(nombre: '', recursos: recursoDefault.clone()));
   }
 
   listarPorIdRol(int idrol ) async {
