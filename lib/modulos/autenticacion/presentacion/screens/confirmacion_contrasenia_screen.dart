@@ -70,7 +70,7 @@ class _ConfirmacionContraseniaForm extends ConsumerWidget {
             prefixIcon: Icons.lock_outline,
             maxLength: 16,
             onChange: metodosForm.onPasswordAnteriorChanged,
-            validacion: (value) => valiacion.validarContrasenia(value),
+            // validacion: (value) => valiacion.validarContrasenia(value),
             onTapIcon: metodosForm.onMostrarContrasenia1,
           ),
           InputTextoOculto(

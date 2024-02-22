@@ -25,12 +25,12 @@ class ContraseniaFormNotifier extends StateNotifier<ContraseniaFormState> {
   }): super( ContraseniaFormState( formKey: GlobalKey<FormState>() ) );
 
   onPasswordAnteriorChanged( String value ) {
-    final passwordAnterior = Password.dirty(value);
+    // final passwordAnterior = Password.dirty(value);
     state = state.copyWith(
       confirmaPassword: state.confirmaPassword,
       nuevoPassword: state.nuevoPassword,
-      passwordAnterior: passwordAnterior,
-      esValidoForm: Formz.validate([ passwordAnterior, state.nuevoPassword, state.confirmaPassword ])
+      passwordAnterior: value,
+      esValidoForm: Formz.validate([  state.nuevoPassword, state.confirmaPassword ])
     );
   }
 
@@ -40,7 +40,7 @@ class ContraseniaFormNotifier extends StateNotifier<ContraseniaFormState> {
       confirmaPassword: state.confirmaPassword,
       nuevoPassword: nuevoPassword,
       passwordAnterior: state.passwordAnterior,
-      esValidoForm: Formz.validate([ nuevoPassword, state.passwordAnterior, state.confirmaPassword ])
+      esValidoForm: Formz.validate([ nuevoPassword, state.confirmaPassword ])
     );
   }
 
@@ -59,7 +59,7 @@ class ContraseniaFormNotifier extends StateNotifier<ContraseniaFormState> {
       confirmaPassword: confirmaPassword,
       nuevoPassword: state.nuevoPassword,
       passwordAnterior: state.passwordAnterior,
-      esValidoForm: Formz.validate([ confirmaPassword, state.passwordAnterior, state.nuevoPassword ])
+      esValidoForm: Formz.validate([ confirmaPassword, state.nuevoPassword ])
     );
   }
 
@@ -93,7 +93,7 @@ class ContraseniaFormNotifier extends StateNotifier<ContraseniaFormState> {
     if ( !state.esValidoForm ) return;
 
     await confirmacionCallback( token, 
-      ArnuvUtils.hashSHA256(state.passwordAnterior.value), 
+      ArnuvUtils.hashSHA256(state.passwordAnterior), 
       ArnuvUtils.hashSHA256(state.nuevoPassword.value), 
       ArnuvUtils.hashSHA256(state.confirmaPassword.value), 
       context);
@@ -101,15 +101,14 @@ class ContraseniaFormNotifier extends StateNotifier<ContraseniaFormState> {
   }
 
   _touchEveryField() {
-    final passwordAnterior = Password.dirty(state.passwordAnterior.value);
     final nuevoPassword = Password.dirty(state.nuevoPassword.value);
     final confirmaPassword = Password.dirty(state.confirmaPassword.value);
 
     state = state.copyWith(
-      passwordAnterior: passwordAnterior,
+      passwordAnterior: state.passwordAnterior,
       nuevoPassword: nuevoPassword,
       confirmaPassword: confirmaPassword,
-      esValidoForm: Formz.validate([ passwordAnterior, nuevoPassword, confirmaPassword])
+      esValidoForm: Formz.validate([ nuevoPassword, confirmaPassword])
     );
 
   }
@@ -127,7 +126,7 @@ class ContraseniaFormNotifier extends StateNotifier<ContraseniaFormState> {
 class ContraseniaFormState {
 
   final bool esValidoForm;
-  final Password passwordAnterior;
+  final String passwordAnterior;
   final Password nuevoPassword;
   final Password confirmaPassword;
   final bool mostrarTexto1;
@@ -137,7 +136,7 @@ class ContraseniaFormState {
 
   ContraseniaFormState({
     this.esValidoForm = false,
-    this.passwordAnterior = const Password.pure(),
+    this.passwordAnterior = "",
     this.nuevoPassword = const Password.pure(),
     this.confirmaPassword = const Password.pure(),
     this.mostrarTexto1 = true,
@@ -148,7 +147,7 @@ class ContraseniaFormState {
 
   ContraseniaFormState copyWith({
     bool? esValidoForm,
-    Password? passwordAnterior,
+    String? passwordAnterior,
     Password? nuevoPassword,
     Password? confirmaPassword,
     bool? mostrarTexto1,
