@@ -33,4 +33,9 @@ class RolRepositoryImpl extends RolRepository {
     return dataSource.listar(limit, page);
   }
 
+  @override
+  Future<List<Rol>> listarActivos(int limit, int page) {
+    return dataSource.listarActivos(limit, page);
+  }
+
 }

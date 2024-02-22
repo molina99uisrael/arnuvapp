@@ -125,7 +125,6 @@ class _Formulario extends ConsumerWidget {
             onChanged: metodos.esFormularioValido,
             child: Column(
               children: [
-                //if (false)
                 InputTexto(
                   initialValue: state.registro.id.idrol.toString(),
                   textInputType: TextInputType.number,
