@@ -22,7 +22,7 @@ class LoginScreen extends StatelessWidget {
               children: [
                 const SizedBox( height: 600 ),
                 CardContainer(
-                  height: 300,
+                  height: 340,
                   width: (size.width > 600) ? size.width * 0.5 : size.width,
                   child: const _LoginForm(),
                 )  

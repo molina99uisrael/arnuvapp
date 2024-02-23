@@ -8,3 +8,4 @@ export 'modulos_dropdown_provider.dart';
 export 'opciones_permisos_provider.dart';
 export 'recursos_dropdown_provider.dart';
 export 'recursos_provider.dart';
+export 'titulos_menu_dropdown_provider.dart';

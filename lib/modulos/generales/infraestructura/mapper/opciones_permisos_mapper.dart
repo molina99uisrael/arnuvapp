@@ -33,8 +33,8 @@ class OpcionesPermisosMapper {
     var mapa = <String, dynamic>{};
         mapa.addAll({"idrol": obj.id.idrol});
         mapa.addAll({"idopcion": obj.id.idopcion});
-        mapa.addAll({"idrecurso": obj.recursos?.id.idrecurso});
-        mapa.addAll({"idmodulo": obj.recursos?.id.idmodulo});
+        mapa.addAll({"idrecurso": obj.recursos?.id.idrecurso == 0 ? null : obj.recursos?.id.idrecurso});
+        mapa.addAll({"idmodulo": obj.recursos?.id.idmodulo == 0 ? null : obj.recursos?.id.idmodulo});
         mapa.addAll({"idopcionpadre": obj.idopcionpadre == 0 ? null : obj.idopcionpadre});
         mapa.addAll({"nombre": obj.nombre == "" ? null : obj.nombre});
         mapa.addAll({"activo": obj.activo});

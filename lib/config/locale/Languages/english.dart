@@ -67,7 +67,8 @@ Map<String, String> english() {
     'lblPermisos': 'Permissions',
     'lblRestablecer': 'Restore password',
     'lblOlvidarContrasenia': 'Did you forget your password?',
-    'lblPadre': 'Father',
+    'lblPadre': 'It is Parent Level Menu',
+    'lblNombreRol': 'Role Name',
     
     // Mensaje de botones
     'btnOk': 'Ok',

@@ -55,4 +55,15 @@ class OpcionesPermisosDataSourceImpl extends OpcionesPermisosDataSource with Arn
     }
   }
   
+  @override
+  Future<List<OpcionesPermisos>> listarTitulosMenu(int idrol) async {
+    try {
+      final response = await getServicio('/opciones-permiso/listarMenusPadres/$idrol');
+      var resp = OpcionesPermisosMapper.listaJsonToList(response.data["lista"]);
+      return resp;
+    } on SystemException catch (e) {
+      throw GeneralesException(e.message);
+    }
+  }
+  
 }

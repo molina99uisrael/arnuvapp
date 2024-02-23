@@ -8,6 +8,8 @@ abstract class OpcionesPermisosRepository {
 
   Future<List<OpcionesPermisos>> listarByIdRol( int idrol );
 
+  Future<List<OpcionesPermisos>> listarTitulosMenu( int idrol );
+
   Future<OpcionesPermisos> crear( OpcionesPermisos permisos );
 
   Future<OpcionesPermisos> editar( OpcionesPermisos permisos );

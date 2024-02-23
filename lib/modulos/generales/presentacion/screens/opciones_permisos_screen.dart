@@ -42,7 +42,10 @@ class OpcionesPermisosScreen extends ConsumerWidget {
                   child: Text(value.nombre),
                 );
               }).toList(),
-              onPressed: () => ref.watch(opcionesPermisosProvider.notifier).listarPorIdRol(registroSelect.id),
+              onPressed: () {
+                ref.watch(opcionesPermisosProvider.notifier).listarPorIdRol(registroSelect.id, registroSelect);
+                ref.watch(titulosMenuDropdownProvider.notifier).listarTitulosMenu(registroSelect.id);
+              } 
             ),
             DataTableArnuv(nombreTabla: "Tabla Menu opciones",
             columnsName: const ['Id opcion', 'Pertenece','Menu','Item Menu'],
@@ -50,7 +53,7 @@ class OpcionesPermisosScreen extends ConsumerWidget {
               ref.watch(opcionesPermisosProvider.notifier).limpiarRegistro();
               dialogRegister(context: context,
                 children: [_Formulario( onPressedOk: () {
-                  ref.watch(opcionesPermisosProvider.notifier).guardar();
+                  ref.watch(opcionesPermisosProvider.notifier).guardarConRefres( () => ref.refresh(opcionesPermisosProvider));
                   Navigator.pop(context);
                 })],
               );
@@ -114,6 +117,11 @@ class _Formulario extends ConsumerWidget {
     final stateRecursos = ref.watch(recursosDropdownProvider);
     final metodosRecursos = ref.watch(recursosDropdownProvider.notifier);
     final valiacion = ValidacionesInputUtil(localizations: localizations);
+
+    // Sacar informacion del dropdown por defecto
+    final stateTituloMenu = ref.watch(titulosMenuDropdownProvider);
+    final metodosTituloMenu = ref.watch(titulosMenuDropdownProvider.notifier);
+
     return Column(
       children: [
         SizedBox(
@@ -124,15 +132,35 @@ class _Formulario extends ConsumerWidget {
             onChanged: metodos.esFormularioValido,
             child: Column(
               children: [
-                InputTexto(
-                  initialValue: state.registro.id.idrol.toString(),
-                  textInputType: TextInputType.number,
-                  label: localizations.translate('lblIdrol'),
-                  maxLength: 10,
-                  onChange: (value) => state.registro.id.idrol = int.tryParse(value) ?? 0,
-                  validacion: (valor) => valiacion.validarSoloNumeros(valor),
-                  readOnly: true,
+                Row(
+                  children: [
+                    SizedBox(
+                      width: 100,
+                      child: InputTexto(
+                        initialValue: state.registro.id.idrol.toString(),
+                        textInputType: TextInputType.number,
+                        label: localizations.translate('lblIdrol'),
+                        maxLength: 10,
+                        onChange: (value) => state.registro.id.idrol = int.tryParse(value) ?? 0,
+                        validacion: (valor) => valiacion.validarSoloNumeros(valor),
+                        readOnly: true,
+                      ),
+                    ),
+                    const SizedBox(width: 20),
+                    SizedBox(
+                      width: 200,
+                      child: InputTexto(
+                        initialValue: state.registro.idrol.nombre,
+                        textInputType: TextInputType.text,
+                        label: localizations.translate('lblNombreRol'),
+                        maxLength: 100,
+                        onChange: (value) {},
+                        readOnly: true,
+                      ),
+                    ),
+                  ],
                 ),
+                
                 if (esActualizar)
                   InputTexto(
                     initialValue: state.registro.id.idopcion.toString(),
@@ -144,20 +172,34 @@ class _Formulario extends ConsumerWidget {
                     validacion: (valor) => valiacion.validarSoloNumeros(valor),
                     readOnly: esActualizar,
                   ),
-                InputTexto(
-                  initialValue: state.registro.idopcionpadre.toString(),
-                  textInputType: TextInputType.number,
-                  espacioTop: 20.0,
-                  label: localizations.translate('lblOpcionPadre'),
-                  maxLength: 10,
-                  onChange: (value) => state.registro.idopcionpadre = int.tryParse(value),
-                  // validacion: (valor) => valiacion.validarSoloNumeros(valor),
-                ),
                 InputCheck(
                     label: localizations.translate('lblPadre'), 
                     onChanged: metodos.setCheckFather,
                     initialValue: state.isFather,
                 ),
+                // InputTexto(
+                //   initialValue: state.registro.idopcionpadre.toString(),
+                //   textInputType: TextInputType.number,
+                //   espacioTop: 20.0,
+                //   label: localizations.translate('lblOpcionPadre'),
+                //   maxLength: 10,
+                //   onChange: (value) => state.registro.idopcionpadre = int.tryParse(value),
+                //   validacion: (valor) => valiacion.validarSoloNumeros(valor),
+                // ),
+                if (!state.isFather)
+                  DropdownPersonalizado(
+                    label: localizations.translate('lblOpcionPadre'),
+                    porcentajeWidth: 0.27,
+                    transaparente: true,
+                    value: stateTituloMenu.registroSelect.id.idopcion.toString(), 
+                    onchange: metodosTituloMenu.onSeleccionChange,
+                    items: stateTituloMenu.lregistros.map<DropdownMenuItem<String>>((OpcionesPermisos value) {
+                      return DropdownMenuItem<String>(
+                        value: value.id.idopcion.toString(),
+                        child: Text(value.nombre == null ? "" : value.nombre!),
+                      );
+                    }).toList(),
+                  ),
                 if (state.isFather)
                   InputTexto(
                     initialValue: state.registro.nombre,
@@ -168,7 +210,7 @@ class _Formulario extends ConsumerWidget {
                     onChange: (value) => state.registro.nombre = value,    
                     // validacion: (valor) => valiacion.validarSoloLetras(valor)      
                   ),
-                if (state.isFather)
+                if (!state.isFather)
                   DropdownPersonalizado(
                     label: localizations.translate('lblRecurso'),
                     porcentajeWidth: 0.27,

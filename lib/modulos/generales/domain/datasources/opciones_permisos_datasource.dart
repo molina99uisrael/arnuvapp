@@ -6,6 +6,8 @@ abstract class OpcionesPermisosDataSource {
   Future<List<OpcionesPermisos>> listar( int limit, int page);
 
   Future<List<OpcionesPermisos>> listarByIdRol( int idrol );
+  
+  Future<List<OpcionesPermisos>> listarTitulosMenu( int idrol );
 
   Future<OpcionesPermisos> crear( OpcionesPermisos permisos );
 

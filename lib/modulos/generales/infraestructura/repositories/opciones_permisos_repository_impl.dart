@@ -39,5 +39,10 @@ class OpcionesPermisosRepositoryImpl extends OpcionesPermisosRepository {
   Future<List<OpcionesPermisos>> listarByIdRol(int idrol) {
     return dataSource.listarByIdRol(idrol);
   }
+  
+  @override
+  Future<List<OpcionesPermisos>> listarTitulosMenu(int idrol) {
+    return dataSource.listarTitulosMenu(idrol);
+  }
 
 }
